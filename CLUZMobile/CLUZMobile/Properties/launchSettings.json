@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cluz": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:CLUZMobile.Converters"
+             xmlns:local="clr-namespace:CLUZMobile;assembly=CLUZMobile"
+             xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile"
+             mc:Ignorable="d"
+             x:Class="CLUZ.Views.GamePage"
+             BackgroundColor="{Binding BackgroundColor}"
+             Title="{Binding Title}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TextToImageConverter x:Key="textToImage" />
+            <converters:RoleToBoolConverter x:Key="roleToBool" />
+            <converters:RoleToOpacityConverter x:Key="roleToOpacity" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Opacity="0.6" Source="{Binding BackgroundImageSource}" Aspect="Fill" Grid.ColumnSpan="1" Grid.RowSpan="4"
+               d:Source="{local:ImageResource CLUZMobile.Images.city.jpg}"/>
+        <StackLayout Margin="15, 15, 15, 5" Grid.Row="0"
+                     Orientation="Horizontal" HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Center" >
+            <Label TextColor="{Binding TextColor}"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Text="{Binding MyRoleLabelText}"
+                   FontSize="Large"
+                   d:Text="TEST"/>
+            <Button TextColor="{Binding TextColor}"
+                    BorderWidth="1"
+                    BorderColor="Gray"
+                    BackgroundColor="Transparent"
+                    Text="{Binding MultiButtonText}"
+                    Command="{Binding MultiCommand}"
+                    FontSize="Large">
+                <Button.Triggers>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                        <Setter Property="BorderWidth" Value="0" />
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+        <StackLayout Margin="15, 0, 15, 5" Grid.Row="1" Grid.RowSpan="3" VerticalOptions="FillAndExpand">
+            <ActivityIndicator IsRunning="{Binding ActivitySpin}"/>
+            <ListView x:Name="ListOfPlayers"
+                        BackgroundColor="Transparent" SeparatorColor="Gray"
+                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                        HasUnevenRows="true"
+                        CachingStrategy="RecycleElement">
+                <d:ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Item One</x:String>
+                        <x:String>Item Two</x:String>
+                        <x:String>Item Three</x:String>
+                        <x:String>Item One</x:String>
+                        <x:String>Item Two</x:String>
+                        <x:String>Item Three</x:String>
+                        <x:String>Item One</x:String>
+                        <x:String>Item Two</x:String>
+                        <x:String>Item Three</x:String>
+                        <x:String>Item One</x:String>
+                        <x:String>Item Two</x:String>
+                        <x:String>Item Three</x:String>
+                    </x:Array>
+                </d:ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <renderers:CustomViewCell IsEnabled="{Binding Role, Converter={StaticResource roleToBool}}">
+                            <StackLayout Margin="0, 10, 0, 10" Spacing="10"
+                                             Orientation="Horizontal"
+                                             HorizontalOptions="CenterAndExpand" >
+                                <StackLayout Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
+                                                 HeightRequest="45" WidthRequest="45" Orientation="Horizontal">
+                                    <Image Source="{Binding Role, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
+                                    <Image Source="{Binding State, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
+                                </StackLayout>
+                                <Label Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
+                                           TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
+                                           FontSize="Large" FontAttributes="Bold" Text="{Binding Name}" />
+                                <Label Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
+                                           TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
+                                           FontSize="Medium" Text="{Binding VoteCount}" />
+                                <d:StackLayout Margin="0, 10, 0, 10" Spacing="10"
+                                             Orientation="Horizontal"
+                                             HorizontalOptions="CenterAndExpand" >
+                                    <StackLayout HeightRequest="45" WidthRequest="45" Orientation="Horizontal">
+                                        <Image Source="{local:ImageResource CLUZMobile.Images.door.jpg}" Aspect="AspectFill"/>
+                                    </StackLayout>
+                                    <Label Text="String" />
+                                </d:StackLayout>
+                            </StackLayout>
+                        </renderers:CustomViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
