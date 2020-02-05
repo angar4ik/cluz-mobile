@@ -11,6 +11,7 @@ namespace CLUZMobile.CustomRenderers
         Button PlusBtn;
         Button MinusBtn;
         Entry Entry;
+        Label label;
 
         public static readonly BindableProperty TextProperty =
           BindableProperty.Create(
@@ -27,8 +28,8 @@ namespace CLUZMobile.CustomRenderers
         }
         public CustomStepper()
         {
-            PlusBtn = new Button { Text = "+", WidthRequest = 40, FontAttributes = FontAttributes.Bold, FontSize = 15 };
-            MinusBtn = new Button { Text = "-", WidthRequest = 40, FontAttributes = FontAttributes.Bold, FontSize = 15 };
+            PlusBtn = new Button { Text = "+", WidthRequest = 35, FontAttributes = FontAttributes.Bold, FontSize = 18 };
+            MinusBtn = new Button { Text = "-", WidthRequest = 35, FontAttributes = FontAttributes.Bold, FontSize = 18 };
             switch (Device.RuntimePlatform)
             {
 
@@ -50,12 +51,14 @@ namespace CLUZMobile.CustomRenderers
             Orientation = StackOrientation.Horizontal;
             PlusBtn.Clicked += PlusBtn_Clicked;
             MinusBtn.Clicked += MinusBtn_Clicked;
-            Entry = new Entry { PlaceholderColor = Color.Gray, Keyboard = Keyboard.Numeric, WidthRequest = 40, BackgroundColor = Color.FromHex("#3FFF"), MaxLength = 10 };
-            Entry.Behaviors.Add(new DecimalNumberValidationBehavior());
-            Entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
-            Entry.TextChanged += Entry_TextChanged;
+            //Entry = new Entry { PlaceholderColor = Color.Gray, Keyboard = Keyboard.Numeric, WidthRequest = 40, BackgroundColor = Color.FromHex("#3FFF"), MaxLength = 2 };
+            label = new Label { WidthRequest = 20, BackgroundColor = Color.FromHex("#3FFF"), VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, FontSize = 18 };
+            //Entry.Behaviors.Add(new DecimalNumberValidationBehavior());
+            //Entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
+            label.SetBinding(Label.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
+            //Entry.TextChanged += Entry_TextChanged;
             Children.Add(MinusBtn);
-            Children.Add(Entry);
+            Children.Add(label);
             Children.Add(PlusBtn);
 
         }
@@ -71,17 +74,18 @@ namespace CLUZMobile.CustomRenderers
 
         private void MinusBtn_Clicked(object sender, EventArgs e)
         {
-            if (Text > 1)
+            if (Text > 4)
                 Text--;
         }
 
         private void PlusBtn_Clicked(object sender, EventArgs e)
         {
-            Text++;
+            if (Text < 20)
+                Text++;
         }
     }
 
-    internal class DecimalNumberValidationBehavior : Behavior
-    {
-    }
+    //internal class DecimalNumberValidationBehavior : Behavior
+    //{
+    //}
 }
