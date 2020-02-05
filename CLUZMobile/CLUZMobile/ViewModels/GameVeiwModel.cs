@@ -98,8 +98,8 @@ namespace CLUZ.ViewModels
             },
             canExecute: (o) =>
             {
-                if (Globals.GameObject.Status == GameState.Unfilled
-                || Globals.PlayerObject.Role == PlayerRole.Ghost
+                if (/*Globals.GameObject.Status == GameState.Unfilled*/
+                /*||*/ Globals.PlayerObject.Role == PlayerRole.Ghost
                 || Globals.PlayerObject.Role == PlayerRole.Kicked
                 || _multiCommandExecuted == true)
                     return false;
