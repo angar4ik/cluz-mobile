@@ -36,6 +36,16 @@ namespace CLUZ.ViewModels
             }
         }
 
+        private double _minimumCount = 4;
+        public double MinimumCount
+        {
+            get { return _minimumCount; }
+            set
+            {
+                SetProperty(ref _minimumCount, value);
+            }
+        }
+
         private string _gameNameEntryText = "";
         public string GameNameEntryText
         {
@@ -48,6 +58,8 @@ namespace CLUZ.ViewModels
         }
 
         Game _selectedItem;
+
+
         public Game SelectedItem
         {
             get { return _selectedItem; }

@@ -15,29 +15,64 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Opacity="0.6" Source="{local:ImageResource CLUZMobile.Images.moon.jpg}" Aspect="Fill" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
-        <StackLayout Margin="15, 10, 15, 0" Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Opacity="0.6" Source="{local:ImageResource CLUZMobile.Images.moon.jpg}" Aspect="Fill" Grid.ColumnSpan="6" Grid.RowSpan="5"/>
+
+        <Entry Margin="15, 30, 15, 0"
+               Grid.Row="0" Grid.Column="0"
+               Grid.ColumnSpan="3"
+               BackgroundColor="Transparent"
+                PlaceholderColor="Gray"
+                IsSpellCheckEnabled="False"
+                Placeholder="Game name" HorizontalOptions="StartAndExpand"
+                Text = "{Binding GameNameEntryText}" />
+        <Entry Grid.Row="0" Grid.Column="2"
+               Grid.ColumnSpan="3"
+               Margin="25, 30, 20, 0"
+               BackgroundColor="Transparent"
+               TextColor="Black" PlaceholderColor="Gray"
+               IsSpellCheckEnabled="False" 
+               Placeholder="Password"
+               HorizontalOptions="StartAndExpand"
+               Text = "{Binding GamePinEntryText}" />
+        <Label Grid.Row="0" Grid.Column="4"
+               Grid.ColumnSpan="2"
+               Margin="25, 40, 20, 0"
+               BackgroundColor="Transparent"
+               HorizontalOptions="StartAndExpand"
+               VerticalOptions="Center"
+               TextColor="Gray"
+               FontSize="Large"
+               Text = "Min:"/>
+        <renderers:CustomStepper Margin="15, 10, 15, 0"
+                 Grid.Row="1" Grid.Column="3"
+                 Grid.ColumnSpan="3"
+                 BackgroundColor="Transparent"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Text="{Binding MinimumCount}" />
+        <Label Margin="30, 10, 15, 0"
+               Grid.Row="0" Grid.Column="0"
+               Grid.ColumnSpan="6"
+               BackgroundColor="Transparent"
+               FontSize="Large"
+               HorizontalOptions="StartAndExpand"
+               Text="{Binding PlayerName}"
+               d:Text="player"/>
+        <StackLayout Margin="15, 10, 15, 0" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
             <Button BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent" HorizontalOptions="End" Text="Create"
                     Command="{Binding CreateCommand}" />
             <Button BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent" HorizontalOptions="End" Text="Join"
                     Command="{Binding JoinCommand}" />
-            <Label BackgroundColor="Transparent" FontSize="Large" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="{Binding PlayerName}"/>
         </StackLayout>
-        <Entry BackgroundColor="Transparent"
-                Margin="25, 0, 10, 0"
-                PlaceholderColor="Gray"
-                IsSpellCheckEnabled="False"
-                Grid.Row="1" Grid.Column="0"
-                Placeholder="Game name" HorizontalOptions="FillAndExpand"
-                Text = "{Binding GameNameEntryText}" />
-        <Entry Grid.Row="1" Grid.Column="1"
-               Margin="25, 0, 10, 0"
-               BackgroundColor="Transparent"
-               TextColor="Black" PlaceholderColor="Gray"
-               IsSpellCheckEnabled="False" 
-                   Placeholder="Pin" HorizontalOptions="FillAndExpand" Text = "{Binding GamePinEntryText}" />
-
-        <StackLayout Margin="20, 20, 15, 5" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2" >
+        <StackLayout Margin="20, 20, 15, 5" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="6" >
             <ListView BackgroundColor="Transparent" SeparatorColor="Gray"
                  ItemsSource="{Binding Items}"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
