@@ -36,6 +36,17 @@ namespace CLUZ.ViewModels
             }
         }
 
+        private string _gameNameEntryText = "";
+        public string GameNameEntryText
+        {
+            get { return _gameNameEntryText; }
+            set
+            {
+                SetProperty(ref _gameNameEntryText, value);
+                CreateCommand.ChangeCanExecute();
+            }
+        }
+
         private double _minimumCount = 4;
         public double MinimumCount
         {
@@ -46,20 +57,9 @@ namespace CLUZ.ViewModels
             }
         }
 
-        private string _gameNameEntryText = "";
-        public string GameNameEntryText
-        {
-            get { return _gameNameEntryText; }
-            set
-            {   
-                SetProperty(ref _gameNameEntryText, value);
-                CreateCommand.ChangeCanExecute();
-            }
-        }
+        
 
         Game _selectedItem;
-
-
         public Game SelectedItem
         {
             get { return _selectedItem; }
@@ -77,7 +77,7 @@ namespace CLUZ.ViewModels
         {
             Items = new ObservableCollection<Game>();
 
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await LoadGames());
 
             CreateCommand = new Command(
             execute: async (o) =>
@@ -112,13 +112,13 @@ namespace CLUZ.ViewModels
 
             PlayersHub.Connection.On("RefreshGameList", async () =>
             {
-                await ExecuteLoadItemsCommand();
+                await LoadGames();
             });
 
             PlayerName = Globals.PlayerObject.Name;
         }
 
-        public async Task ExecuteLoadItemsCommand()
+        public async Task LoadGames()
         {
             ActivitySpin = true;
 
@@ -139,12 +139,16 @@ namespace CLUZ.ViewModels
             string gameName = GameNameEntryText.Trim();
             string gamePin = GamePinEntryText.Trim();
 
+            Console.WriteLine("ExecuteCreateGameCommand fired");
+
             bool result = await PlayersHub.Connection.InvokeAsync<bool>("GameNameExistsInPool", gameName);  
 
             if (!result)
             {
                 await PlayersHub.Connection.InvokeAsync("CreateGame", gameName, gamePin);
-                        
+
+                DependencyService.Get<IMessage>().ShortAlert($"Game {gameName} have been created");
+
                 GameNameEntryText = "";
             }
             else

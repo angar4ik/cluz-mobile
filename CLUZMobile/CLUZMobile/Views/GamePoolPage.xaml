@@ -9,7 +9,7 @@
              xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile"
              Title="{Binding Title}"
              BackgroundColor="White">
-    <Grid>
+    <Grid IsVisible="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -50,7 +50,7 @@
                VerticalOptions="Center"
                TextColor="Gray"
                FontSize="Large"
-               Text = "Min:"/>
+               Text="{Binding MinimumCount}"/>
         <renderers:CustomStepper Margin="15, 10, 15, 0"
                  Grid.Row="1" Grid.Column="3"
                  Grid.ColumnSpan="3"
@@ -58,15 +58,7 @@
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
                  Text="{Binding MinimumCount}" />
-        <Label Margin="30, 10, 15, 0"
-               Grid.Row="0" Grid.Column="0"
-               Grid.ColumnSpan="6"
-               BackgroundColor="Transparent"
-               FontSize="Large"
-               HorizontalOptions="StartAndExpand"
-               Text="{Binding PlayerName}"
-               d:Text="player"/>
-        <StackLayout Margin="15, 10, 15, 0" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
+        <StackLayout Margin="15, 10, 15, 0" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
             <Button BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent" HorizontalOptions="End" Text="Create"
                     Command="{Binding CreateCommand}" />
             <Button BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent" HorizontalOptions="End" Text="Join"
