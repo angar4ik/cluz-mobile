@@ -8,8 +8,6 @@ using Android.OS;
 using CLUZMobile.Droid;
 using CLUZMobile.Interfaces;
 
-
-
 namespace CLUZ.Droid
 {
     [Activity(Label = "CLUZ", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]

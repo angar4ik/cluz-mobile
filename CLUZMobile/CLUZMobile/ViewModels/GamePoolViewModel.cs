@@ -57,8 +57,6 @@ namespace CLUZ.ViewModels
             }
         }
 
-        
-
         Game _selectedItem;
         public Game SelectedItem
         {
@@ -145,7 +143,7 @@ namespace CLUZ.ViewModels
 
             if (!result)
             {
-                await PlayersHub.Connection.InvokeAsync("CreateGame", gameName, gamePin);
+                await PlayersHub.Connection.InvokeAsync("CreateGame", gameName, gamePin, MinimumCount);
 
                 DependencyService.Get<IMessage>().ShortAlert($"Game {gameName} have been created");
 
