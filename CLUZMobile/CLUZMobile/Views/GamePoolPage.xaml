@@ -9,7 +9,7 @@
              xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile"
              Title="{Binding Title}"
              BackgroundColor="White">
-    <Grid IsVisible="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

@@ -31,7 +31,7 @@ namespace CLUZ.Views
         {
             if(Globals.GameObject.Status == GameState.Locked)
             {
-                DisplayAlert("Leave?", "Leave the game? You're going to be a party pooper!", "Yes", "No").ContinueWith(async t =>
+                DisplayAlert("Leave?", "You're probably ruining the game. Sure?", "Yes", "No").ContinueWith(async t =>
                 {
                     if (t.Result)
                     {

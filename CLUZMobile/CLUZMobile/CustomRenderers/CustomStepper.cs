@@ -52,7 +52,7 @@ namespace CLUZMobile.CustomRenderers
             PlusBtn.Clicked += PlusBtn_Clicked;
             MinusBtn.Clicked += MinusBtn_Clicked;
             //Entry = new Entry { PlaceholderColor = Color.Gray, Keyboard = Keyboard.Numeric, WidthRequest = 40, BackgroundColor = Color.FromHex("#3FFF"), MaxLength = 2 };
-            label = new Label { WidthRequest = 20, BackgroundColor = Color.FromHex("#3FFF"), VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, FontSize = 18 };
+            label = new Label { WidthRequest = 30, BackgroundColor = Color.FromHex("#3FFF"), VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, FontSize = 18 };
             //Entry.Behaviors.Add(new DecimalNumberValidationBehavior());
             //Entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
             label.SetBinding(Label.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
@@ -60,7 +60,6 @@ namespace CLUZMobile.CustomRenderers
             Children.Add(MinusBtn);
             Children.Add(label);
             Children.Add(PlusBtn);
-
         }
 
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)

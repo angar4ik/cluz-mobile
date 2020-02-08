@@ -10,7 +10,7 @@
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Orientation="Vertical">
             <Label FontSize="50" TextColor="White" Text="{Binding Text}"
                    d:Text="TEST"/>
-            <Label Text="Your ad could be here" FontSize="Small" />
+            <Label Text="Your ad could be here" FontSize="Small" TextColor="Gray"/>
         </StackLayout>
         
     </ContentPage.Content>
