@@ -285,7 +285,11 @@ namespace CLUZ.ViewModels
                 _multiCommandExecuted = false;
                 DependencyService.Get<IMessage>().ShortAlert("Select player");
             }
-                
+
+            MultiCommand.ChangeCanExecute();
+
+            UpdateMultiButtonText();
+
         }
         private void UpdateGame()
         {
@@ -301,8 +305,6 @@ namespace CLUZ.ViewModels
 
             // setting colors only when after day changes
             Theme.SetTheme(this);
-
-            
         }
 
         public void UpdateMultiButtonText()
