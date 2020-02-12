@@ -157,6 +157,7 @@ namespace CLUZ.ViewModels
 
         private async Task ExecuteJoinGameCommand()
         {
+            //TODO: disable button after first click
             string gamePin = GamePinEntryText.Trim();
 
             await JoinGame(SelectedItem.Guid, gamePin);

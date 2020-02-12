@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CLUZ.ViewModels;
+using CLUZ.Services;
 
 namespace CLUZ.Views
 {
@@ -24,9 +25,11 @@ namespace CLUZ.Views
 
         protected override bool OnBackButtonPressed()
         {
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //System.Diagnostics.Process.GetCurrentProcess().Kill();
 
-            return true;
+            PlayersHub.Disonnect();
+
+            return false;
         }
     }
 

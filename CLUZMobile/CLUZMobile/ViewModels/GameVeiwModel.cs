@@ -301,6 +301,7 @@ namespace CLUZ.ViewModels
             if (timeFrameCount != Globals.GameObject.TimeFrame)
             {
                 _multiCommandExecuted = false;
+                _didIVoted = false;
             }
 
             // setting colors only when after day changes

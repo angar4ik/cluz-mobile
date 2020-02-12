@@ -6,7 +6,7 @@ using CLUZ.Services;
 
 namespace CLUZ.Droid
 {
-    [Activity(Theme = "@style/MyTheme.Splash", Icon = "@mipmap/ic_launcher", MainLauncher = true, NoHistory = true)]
+    [Activity(Theme = "@style/MyTheme.Splash", Icon = "@mipmap/ic_launcher", MainLauncher = false, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)

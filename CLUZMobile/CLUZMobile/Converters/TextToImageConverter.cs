@@ -1,4 +1,5 @@
 ﻿using CLUZ.ViewModels;
+using CLUZMobile.Helpers;
 using System;
 using System.Globalization;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ namespace CLUZMobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && IsDay())
+            if (value != null && Time.IsDay())
             {
                 switch(value.ToString())
                 {
@@ -23,7 +24,7 @@ namespace CLUZMobile.Converters
                         return null;
                 }
             }
-            else if (value != null && !IsDay())
+            else /*if (value != null && !Time.IsDay())*/
             {
                 switch (value.ToString())
                 {
@@ -37,24 +38,25 @@ namespace CLUZMobile.Converters
                         return null;
                 }
             }
-            return null;
+            //return null;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
-        private bool IsDay()
-        {
-            int number = Globals.GameObject.TimeFrame;
 
-            if (number % 2 == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //private bool IsDay()
+        //{
+        //    int number = Globals.GameObject.TimeFrame;
+
+        //    if (number % 2 == 0)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

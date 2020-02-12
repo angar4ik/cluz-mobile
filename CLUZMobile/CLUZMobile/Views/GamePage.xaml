@@ -55,8 +55,7 @@
                         BackgroundColor="Transparent" SeparatorColor="Gray"
                         ItemsSource="{Binding Items}"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
-                        HasUnevenRows="true"
-                        CachingStrategy="RecycleElement">
+                        HasUnevenRows="true">
                 <d:ListView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Item One</x:String>

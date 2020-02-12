@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CLUZ.ViewModels;
 using CLUZ.Services;
+using Microsoft.AspNetCore.SignalR.Client;
+using CLUZMobile;
 
 namespace CLUZ.Views
 {
@@ -24,9 +26,16 @@ namespace CLUZ.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
         protected override bool OnBackButtonPressed()
         {
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //System.Diagnostics.Process.GetCurrentProcess().Kill();
+
+            PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool", Globals.PlayerObject.Guid);
+
+            PlayersHub.Disonnect();
+
+            App.Current.MainPage = new RegisterPage();
 
             return true;
         }

@@ -39,6 +39,8 @@ namespace CLUZ.ViewModels
         {
             ActivitySpin = true;
 
+            await PlayersHub.Connect();
+
             bool result = await PlayersHub.Connection.InvokeAsync<bool>("PlayerNameExistsInPool", EntryText);
 
             if(!result)

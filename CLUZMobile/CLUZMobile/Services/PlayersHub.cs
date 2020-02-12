@@ -26,7 +26,7 @@ namespace CLUZ.Services
 
         public static async Task Connect()
         {
-            try
+            if (Connection.State == HubConnectionState.Disconnected)
             {
                 await Connection.StartAsync();
 
@@ -36,9 +36,13 @@ namespace CLUZ.Services
                     await Connection.StartAsync();
                 };
             }
-            catch
+        }
+
+        public static async Task Disonnect()
+        {
+            if(Connection.State == HubConnectionState.Connected)
             {
-                await Connect();
+                await Connection.StopAsync();
             }
         }
     }
