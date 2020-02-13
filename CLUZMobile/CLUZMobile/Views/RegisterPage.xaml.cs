@@ -1,7 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CLUZ.ViewModels;
-using CLUZ.Services;
 
 namespace CLUZ.Views
 {
@@ -27,7 +26,7 @@ namespace CLUZ.Views
         {
             //System.Diagnostics.Process.GetCurrentProcess().Kill();
 
-            PlayersHub.Disonnect();
+            //PlayersHub.Disonnect();
 
             return false;
         }

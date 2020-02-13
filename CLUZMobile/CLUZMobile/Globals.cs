@@ -8,7 +8,8 @@ namespace CLUZMobile
 {
     public static class Globals
     {
-        static string hostName = "veratoliquehouse.duckdns.org";
+        //static string hostName = "veratoliquehouse.duckdns.org";
+        static string hostName = "localhost";
         static string hostPort = "8000";
 
         public static string Host { get; } = $"{hostName}:{hostPort}";
