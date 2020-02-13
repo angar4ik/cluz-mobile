@@ -54,7 +54,8 @@
             <ListView x:Name="ListOfPlayers"
                         BackgroundColor="Transparent" SeparatorColor="Gray"
                         ItemsSource="{Binding Items}"
-                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                        CachingStrategy="RecycleElement"
                         HasUnevenRows="true">
                 <d:ListView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
@@ -74,7 +75,7 @@
                 </d:ListView.ItemsSource>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <renderers:CustomViewCell IsEnabled="{Binding Role, Converter={StaticResource roleToBool}}">
+                        <ViewCell IsEnabled="{Binding Role, Converter={StaticResource roleToBool}}">
                             <StackLayout Margin="0, 10, 0, 10" Spacing="10"
                                              Orientation="Horizontal"
                                              HorizontalOptions="CenterAndExpand" >
@@ -98,7 +99,7 @@
                                     <Label Text="String" />
                                 </d:StackLayout>
                             </StackLayout>
-                        </renderers:CustomViewCell>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

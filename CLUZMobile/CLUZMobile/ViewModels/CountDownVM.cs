@@ -1,5 +1,7 @@
 ﻿using CLUZ.Views;
 using CLUZMobile.Helpers;
+using CLUZMobile.ViewModels;
+using CLUZMobile.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,7 +43,7 @@ namespace CLUZ.ViewModels
 
                         App.Current.MainPage.Navigation.PopModalAsync();
 
-                        App.Current.MainPage = new GamePoolPage();
+                        App.Current.MainPage = new WelcomePage();
 
                         return false;
                     }
