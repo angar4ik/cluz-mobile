@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CLUZMobile;assembly=CLUZMobile"
+             xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile"
+             mc:Ignorable="d"
+             x:Class="CLUZMobile.Views.JoinPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Opacity="0.6" Source="{local:ImageResource CLUZMobile.Images.moon.jpg}" Aspect="Fill" Grid.ColumnSpan="6" Grid.RowSpan="6"/>
+
+        <Button Grid.Row="0" Grid.Column="4"
+                Grid.ColumnSpan="2"
+                Margin="0, 20, 20, 20"
+            BorderColor="Gray" BorderWidth="1"
+                VerticalOptions="CenterAndExpand"
+               HorizontalOptions="FillAndExpand"
+                BackgroundColor="Transparent"
+                Text="Join"
+                Command="{Binding JoinCommand}" />
+
+        <Entry Grid.Row="0" Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Margin="20, 20, 0, 20"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="FillAndExpand"
+               BackgroundColor="Transparent"
+               TextColor="Black" PlaceholderColor="Gray"
+               IsSpellCheckEnabled="False" 
+               Placeholder="Password"
+               Text = "{Binding GamePinEntryText}" />
+        
+        <ListView Margin="15, 20, 15, 20"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.RowSpan="5"
+                     Grid.ColumnSpan="6"
+                BackgroundColor="Transparent" SeparatorColor="Gray"
+                 ItemsSource="{Binding Items}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    HasUnevenRows="True"
+                    CachingStrategy="RecycleElement"
+                    IsPullToRefreshEnabled="true"
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    IsRefreshing="{Binding ActivitySpin, Mode=OneWay}">
+            <d:ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Item One</x:String>
+                    <x:String>Item Two</x:String>
+                    <x:String>Item Three</x:String>
+                    <x:String>Item One</x:String>
+                    <x:String>Item Two</x:String>
+                    <x:String>Item Three</x:String>
+                    <x:String>Item One</x:String>
+                    <x:String>Item Two</x:String>
+                    <x:String>Item Three</x:String>
+                </x:Array>
+            </d:ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <renderers:CustomViewCell>
+                        <StackLayout Margin="0, 10, 0, 10" Spacing="10" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label TextColor="Black" FontSize="Large" FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label TextColor="Black" FontSize="Small"  Text="{Binding Status, StringFormat='S: {0}'}" />
+                        </StackLayout>
+                    </renderers:CustomViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        
+    </Grid>
+</ContentPage>

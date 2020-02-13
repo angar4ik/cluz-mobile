@@ -5,18 +5,19 @@ using CLUZ.ViewModels;
 using CLUZ.Services;
 using Microsoft.AspNetCore.SignalR.Client;
 using CLUZMobile;
+using CLUZMobile.Interfaces;
 
 namespace CLUZ.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePoolPage : ContentPage
     {
-        GamePoolViewModel viewModel;
+        GamePoolVM viewModel;
         public GamePoolPage()
         {
             InitializeComponent();
 
-            this.BindingContext = viewModel = new GamePoolViewModel();
+            this.BindingContext = viewModel = new GamePoolVM();
         }
 
         protected override void OnAppearing()
@@ -30,6 +31,8 @@ namespace CLUZ.Views
         protected override bool OnBackButtonPressed()
         {
             //System.Diagnostics.Process.GetCurrentProcess().Kill();
+
+            DependencyService.Get<IMessage>().ShortAlert("Logged out from server");
 
             PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool", Globals.PlayerObject.Guid);
 

@@ -8,7 +8,7 @@ namespace CLUZMobile.Helpers
 {
     public static class Theme
     {
-        public static void SetTheme(GameVeiwModel gameVeiwModel)
+        public static void SetTheme(GameVM gameVeiwModel)
         {
             if (Time.IsDay() && gameVeiwModel.timeFrameCount != Globals.GameObject.TimeFrame)
             {

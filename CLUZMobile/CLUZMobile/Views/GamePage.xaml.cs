@@ -8,18 +8,19 @@ using CLUZ.Models;
 using System.Threading.Tasks;
 using CLUZMobile;
 using CLUZMobile.Helpers;
+using CLUZMobile.Views;
 
 namespace CLUZ.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage
     {
-        GameVeiwModel viewModel;
+        GameVM viewModel;
         public GamePage(Guid gameGuid)
         {
             InitializeComponent();
 
-            this.BindingContext = viewModel = new GameVeiwModel(gameGuid);
+            this.BindingContext = viewModel = new GameVM(gameGuid);
         }
 
         protected override void OnAppearing()
@@ -37,7 +38,7 @@ namespace CLUZ.Views
                     {
                         Actions.LeaveGame();
 
-                        App.Current.MainPage = new GamePoolPage();
+                        App.Current.MainPage = new WelcomePage();
                     }
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
@@ -45,7 +46,7 @@ namespace CLUZ.Views
             {
                 Actions.LeaveGame();
 
-                App.Current.MainPage = new GamePoolPage();
+                App.Current.MainPage = new WelcomePage();
             }
 
             return true;

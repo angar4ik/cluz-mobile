@@ -12,7 +12,7 @@ namespace CLUZ.Views
         {
             InitializeComponent();
 
-            this.BindingContext = new RegisterViewModel();
+            this.BindingContext = new RegisterVM();
 
             //ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
 

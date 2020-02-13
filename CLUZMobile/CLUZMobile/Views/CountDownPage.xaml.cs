@@ -12,12 +12,12 @@ namespace CLUZ.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CountDownPage : ContentPage
     {
-        CountDownViewModel viewModel;
+        CountDownVM viewModel;
         public CountDownPage(int time, string text, bool endGame)
         {
             InitializeComponent();
 
-            this.BindingContext = viewModel = new CountDownViewModel(time, text, endGame);
+            this.BindingContext = viewModel = new CountDownVM(time, text, endGame);
         }
 
         protected async override void OnAppearing()

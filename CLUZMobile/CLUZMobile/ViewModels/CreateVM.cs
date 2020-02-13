@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-using System.Text;
+﻿using CLUZ;
 using CLUZ.Models;
 using CLUZ.Services;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR.Client;
-using System.Security.Cryptography;
+using CLUZ.ViewModels;
 using CLUZ.Views;
 using CLUZMobile.Interfaces;
-using CLUZMobile;
+using Microsoft.AspNetCore.SignalR.Client;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
-namespace CLUZ.ViewModels
+namespace CLUZMobile.ViewModels
 {
-    
-    public class GamePoolViewModel : BaseViewModel
+    class CreateVM : BaseVM
     {
-        private string _playerName;
-        public string PlayerName
-        {
-            get { return _playerName; }
-            set { SetProperty(ref _playerName, value); }
-        }
-
+        #region Fields
         private string _gamePinEntryText = "";
+        private string _gameNameEntryText = "";
+        private double _minimumCount = 4;
+        #endregion
+
+        #region Props
         public string GamePinEntryText
         {
             get { return _gamePinEntryText; }
@@ -32,11 +30,10 @@ namespace CLUZ.ViewModels
             {
                 SetProperty(ref _gamePinEntryText, value);
                 CreateCommand.ChangeCanExecute();
-                JoinCommand.ChangeCanExecute();
             }
         }
 
-        private string _gameNameEntryText = "";
+
         public string GameNameEntryText
         {
             get { return _gameNameEntryText; }
@@ -47,7 +44,7 @@ namespace CLUZ.ViewModels
             }
         }
 
-        private double _minimumCount = 4;
+
         public double MinimumCount
         {
             get { return _minimumCount; }
@@ -56,27 +53,12 @@ namespace CLUZ.ViewModels
                 SetProperty(ref _minimumCount, value);
             }
         }
+        #endregion
 
-        Game _selectedItem;
-        public Game SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                JoinCommand.ChangeCanExecute();
-            }
-        }
-        public ObservableCollection<Game> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
         public Command CreateCommand { get; set; }
-        public Command JoinCommand { get; set; }
-        public GamePoolViewModel()
+
+        public CreateVM()
         {
-            Items = new ObservableCollection<Game>();
-
-            LoadItemsCommand = new Command(async () => await LoadGames());
-
             CreateCommand = new Command(
             execute: async (o) =>
             {
@@ -92,44 +74,6 @@ namespace CLUZ.ViewModels
                 else
                     return false;
             });
-
-            JoinCommand = new Command(
-            execute: async (o) =>
-            {
-                await ExecuteJoinGameCommand();
-            },
-            canExecute: (o) =>
-            {
-                string gamePin = GamePinEntryText.Trim();
-
-                if (!String.IsNullOrEmpty(gamePin) && SelectedItem != null)
-                    return true;
-                else
-                    return false;
-            });
-
-            PlayersHub.Connection.On("RefreshGameList", async () =>
-            {
-                await LoadGames();
-            });
-
-            PlayerName = Globals.PlayerObject.Name;
-        }
-
-        public async Task LoadGames()
-        {
-            ActivitySpin = true;
-
-            List<Game> _games = await PlayersHub.Connection.InvokeAsync<List<Game>>("GetAllGames");
-
-            Items.Clear();
-
-            foreach (Game item in _games)
-            {
-                Items.Add(item);
-            }
-
-            ActivitySpin = false;
         }
 
         private async Task ExecuteCreateGameCommand()
@@ -139,15 +83,17 @@ namespace CLUZ.ViewModels
 
             Console.WriteLine("ExecuteCreateGameCommand fired");
 
-            bool result = await PlayersHub.Connection.InvokeAsync<bool>("GameNameExistsInPool", gameName);  
+            bool result = await PlayersHub.Connection.InvokeAsync<bool>("GameNameExistsInPool", gameName);
 
             if (!result)
             {
-                await PlayersHub.Connection.InvokeAsync("CreateGame", gameName, gamePin, MinimumCount);
+                Guid newGameGuid = await PlayersHub.Connection.InvokeAsync<Guid>("CreateGame", gameName, gamePin, MinimumCount);
 
                 DependencyService.Get<IMessage>().ShortAlert($"Game {gameName} have been created");
 
                 GameNameEntryText = "";
+
+                await JoinGame(newGameGuid, gamePin);
             }
             else
             {
@@ -155,18 +101,8 @@ namespace CLUZ.ViewModels
             }
         }
 
-        private async Task ExecuteJoinGameCommand()
-        {
-            //TODO: disable button after first click
-            string gamePin = GamePinEntryText.Trim();
-
-            await JoinGame(SelectedItem.Guid, gamePin);
-        }
-
         private async Task JoinGame(Guid gameGuid, string gamePin)
         {
-            //await GamesHub.Connect();
-
             Game game = await PlayersHub.Connection.InvokeAsync<Game>("GetGameByGuid", gameGuid);
 
             string pinSha256 = ComputeSha256Hash(gamePin);

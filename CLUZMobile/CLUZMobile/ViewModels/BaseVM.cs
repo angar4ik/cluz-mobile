@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace CLUZ.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseVM : INotifyPropertyChanged
     {
         string title = string.Empty;
 

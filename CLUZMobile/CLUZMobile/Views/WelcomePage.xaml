@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:CLUZMobile;assembly=CLUZMobile"
+             x:Class="CLUZMobile.Views.WelcomePage"
+             BackgroundColor="DarkGray">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Opacity="0.6" Source="{local:ImageResource CLUZMobile.Images.moon.jpg}" Aspect="Fill" Grid.ColumnSpan="6" Grid.RowSpan="6"/>
+
+        <Button Margin="20, 0, 10, 0"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Grid.RowSpan="1"
+                     Grid.ColumnSpan="3"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="FillAndExpand"
+            BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent"
+                Text="Create"
+                Command="{Binding CreateCommand}" />
+        <Button Margin="10, 0, 20, 0"
+                     Grid.Row="3"
+                     Grid.Column="3"
+                     Grid.RowSpan="1"
+                     Grid.ColumnSpan="3"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="FillAndExpand"
+                BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent"
+                Text="Join"
+                Command="{Binding JoinCommand}" />
+    </Grid>
+</ContentPage>

@@ -24,7 +24,7 @@ namespace CLUZMobile.Helpers
             }
         }
 
-        public async static Task CountDownTimerAsync(GameVeiwModel model)
+        public async static Task CountDownTimerAsync(GameVM model)
         {
             for(int i = 30; i > 1; i--)
             {

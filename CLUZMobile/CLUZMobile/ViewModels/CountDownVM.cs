@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace CLUZ.ViewModels
 {
-    class CountDownViewModel : BaseViewModel
+    class CountDownVM : BaseVM
     {
         #region Text
         private string _text = "Empty";
@@ -19,7 +19,7 @@ namespace CLUZ.ViewModels
         }
         #endregion
 
-        public CountDownViewModel(int time, string text, bool endGame)
+        public CountDownVM(int time, string text, bool endGame)
         {
             int timer = time;
 

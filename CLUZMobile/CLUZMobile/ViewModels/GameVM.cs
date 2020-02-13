@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace CLUZ.ViewModels
 {
-    public class GameVeiwModel : BaseViewModel
+    public class GameVM : BaseVM
     {
         #region SelectedItem
         private Player _selectedItem;
@@ -86,7 +86,7 @@ namespace CLUZ.ViewModels
 
         public Command MultiCommand { get; set; }
         public ObservableCollection<Player> Items { get; set; } = new ObservableCollection<Player>();
-        public GameVeiwModel(Guid gameGuid)
+        public GameVM(Guid gameGuid)
         {
             Globals.GameObject.Guid = gameGuid;
 

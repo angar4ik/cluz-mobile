@@ -7,16 +7,17 @@ using CLUZ.Views;
 using CLUZMobile.Interfaces;
 using CLUZ.Models;
 using CLUZMobile;
+using CLUZMobile.Views;
 
 namespace CLUZ.ViewModels
 {
 
-    public class RegisterViewModel : BaseViewModel
+    public class RegisterVM : BaseVM
     {
 
         public Command RegisterCommand { set; get; }
 
-        public RegisterViewModel()
+        public RegisterVM()
         {
             RegisterCommand = new Command(
             execute: async (EntryText) =>
@@ -53,7 +54,8 @@ namespace CLUZ.ViewModels
 
                 ActivitySpin = false;
 
-                App.Current.MainPage = new GamePoolPage();
+                //App.Current.MainPage = new GamePoolPage();
+                App.Current.MainPage = new WelcomePage();
 
             }
             else
