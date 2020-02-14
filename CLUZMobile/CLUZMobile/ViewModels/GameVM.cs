@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -135,12 +135,11 @@ namespace CLUZ.ViewModels
             {
                 if (guid == Globals.GameObject.Guid)
                 {
-                    if (_modalOpened == false)
-                    {
-                        _modalOpened = true;
-                        await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), true);
-                        _modalOpened = false;
-                    }
+                    PlayersHub.Connection.Remove("GameChanged");
+                    PlayersHub.Connection.Remove("PlayerChanged");
+                    PlayersHub.Connection.Remove("PlayerListChanged");
+                    PlayersHub.Connection.Remove("ShowModal");
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), true);
                 }
             });
             #endregion
