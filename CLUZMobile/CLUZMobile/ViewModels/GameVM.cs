@@ -74,13 +74,9 @@ namespace CLUZ.ViewModels
 
         public int timeFrameCount = 0;
 
-        bool _multiCommandExecuted = false;
+        bool _multiCommandHaveExecuted = false;
 
-        bool _didIVoted = false;
-
-        //bool _didIWaited = false;
-
-        //bool _areWeWaitingTimer = false;
+        //bool _didIVoted = false;
 
         bool _modalOpened = false;
 
@@ -98,10 +94,9 @@ namespace CLUZ.ViewModels
             },
             canExecute: (o) =>
             {
-                if (/*Globals.GameObject.Status == GameState.Unfilled*/
-                /*||*/ Globals.PlayerObject.Role == PlayerRole.Ghost
+                if (Globals.PlayerObject.Role == PlayerRole.Ghost
                 || Globals.PlayerObject.Role == PlayerRole.Kicked
-                || _multiCommandExecuted == true)
+                || _multiCommandHaveExecuted == true)
                     return false;
                 else
                     return true;
@@ -243,7 +238,7 @@ namespace CLUZ.ViewModels
         }
         private void ExecuteMultiCommand(string buttonText)
         {
-            _multiCommandExecuted = true;
+            _multiCommandHaveExecuted = true;
 
             if (buttonText.Contains("Ready"))
             {
@@ -275,14 +270,16 @@ namespace CLUZ.ViewModels
             {
                 PlayersHub.Connection.InvokeAsync("VoteRequest", Globals.PlayerObject.Guid, SelectedItem.Guid, Globals.GameObject.Guid);
 
-                _multiCommandExecuted = false;
-                _didIVoted = true;
-                MultiButtonText = "Ready";
+                Actions.SetAndUpdateState(PlayerState.Ready);
+
+                //_multiCommandHaveExecuted = false;
+                //_didIVoted = true;
+                //MultiButtonText = "Ready";
             }
 
             else
             {
-                _multiCommandExecuted = false;
+                _multiCommandHaveExecuted = false;
                 DependencyService.Get<IMessage>().ShortAlert("Select player");
             }
 
@@ -295,19 +292,18 @@ namespace CLUZ.ViewModels
         {
             // resetting Ready button in case of unfilled game
             if (Globals.GameObject.Status == GameState.Unfilled)
-                _multiCommandExecuted = false;
+                _multiCommandHaveExecuted = false;
 
             // reseting for next day
             if (timeFrameCount != Globals.GameObject.TimeFrame)
             {
-                _multiCommandExecuted = false;
-                _didIVoted = false;
+                _multiCommandHaveExecuted = false;
+                //_didIVoted = false;
             }
 
             // setting colors only when after day changes
             Theme.SetTheme(this);
         }
-
         public void UpdateMultiButtonText()
         {
             if (Globals.PlayerObject.Role == PlayerRole.Mafia
@@ -321,7 +317,7 @@ namespace CLUZ.ViewModels
                 MultiButtonText = "Guess";
             }
             else if (Globals.GameObject.TimeFrame >= 2
-                && Time.IsDay() && _didIVoted == false)
+                && Time.IsDay() /*&& _didIVoted == false*/)
             {
                 MultiButtonText = "Vote";
             }

@@ -13,10 +13,6 @@ namespace CLUZMobile.Helpers
     {
         public static void LeaveGame()
         {
-            SetAndUpdateState(PlayerState.Idle);
-
-            Globals.PlayerObject.Role = PlayerRole.None;
-
             PlayersHub.Connection.InvokeAsync("RemovePlayerFromGame", Globals.PlayerObject.Guid, Globals.GameObject.Guid);
         }
 

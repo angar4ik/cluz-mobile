@@ -29,7 +29,7 @@
         <ActivityIndicator IsRunning="{Binding ActivitySpin}" Grid.Row="2" Grid.ColumnSpan="2"/>
         <StackLayout Margin="10, 0, 0, 0" VerticalOptions="Center" Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
             <Frame Padding="0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" CornerRadius="2">
-                <Entry x:Name="EntryText" IsSpellCheckEnabled="False" PlaceholderColor="Gray" Placeholder="Player name" />
+                <Entry x:Name="EntryText" IsSpellCheckEnabled="False" PlaceholderColor="Gray" Placeholder="Name" />
             </Frame>
         </StackLayout>
         <StackLayout Margin="0, 0, 10, 0" VerticalOptions="Center" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">

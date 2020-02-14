@@ -39,10 +39,8 @@ namespace CLUZ.ViewModels
                 {
                     if (endGame)
                     {
-                        Actions.LeaveGame();
-
                         App.Current.MainPage.Navigation.PopModalAsync();
-
+                        
                         App.Current.MainPage = new WelcomePage();
 
                         return false;

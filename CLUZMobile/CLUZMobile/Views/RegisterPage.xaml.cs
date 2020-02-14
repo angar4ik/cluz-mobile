@@ -1,6 +1,8 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CLUZ.ViewModels;
+using CLUZ.Services;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace CLUZ.Views
 {
@@ -24,9 +26,8 @@ namespace CLUZ.Views
 
         protected override bool OnBackButtonPressed()
         {
-            //System.Diagnostics.Process.GetCurrentProcess().Kill();
 
-            //PlayersHub.Disonnect();
+            PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool");
 
             return false;
         }

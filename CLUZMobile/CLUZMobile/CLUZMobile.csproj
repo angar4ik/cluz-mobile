@@ -17,6 +17,7 @@
     <None Remove="Images\ghost.png" />
     <None Remove="Images\ghost_w.png" />
     <None Remove="Images\sky.jpg" />
+    <None Remove="Images\thumb_down.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <EmbeddedResource Include="Images\sky.jpg" />
     <EmbeddedResource Include="Images\moon.jpg" />
     <EmbeddedResource Include="Images\sun.jpg" />
+    <EmbeddedResource Include="Images\thumb_down.png" />
   </ItemGroup>
 
   <ItemGroup>

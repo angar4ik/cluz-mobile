@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace CLUZMobile.CustomRenderers
 {
-    class CustomViewCell : ViewCell
-    {
-    }
+    //class CustomViewCell : ViewCell
+    //{
+    //}
 }

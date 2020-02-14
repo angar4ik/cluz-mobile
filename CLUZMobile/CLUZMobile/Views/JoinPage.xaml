@@ -43,7 +43,8 @@
                HorizontalOptions="FillAndExpand"
                BackgroundColor="Transparent"
                TextColor="Black" PlaceholderColor="Gray"
-               IsSpellCheckEnabled="False" 
+               IsSpellCheckEnabled="False"
+               IsTextPredictionEnabled="False"
                Placeholder="Password"
                Text = "{Binding GamePinEntryText}" />
 

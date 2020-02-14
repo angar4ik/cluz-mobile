@@ -40,6 +40,7 @@
                BackgroundColor="Transparent"
                PlaceholderColor="Gray"
                IsSpellCheckEnabled="False"
+               IsTextPredictionEnabled="False"
                Placeholder="Name"
                Text = "{Binding GameNameEntryText}" />
         <Entry Grid.Row="2" Grid.Column="3"
@@ -49,7 +50,8 @@
                HorizontalOptions="FillAndExpand"
                BackgroundColor="Transparent"
                TextColor="Black" PlaceholderColor="Gray"
-               IsSpellCheckEnabled="False" 
+               IsSpellCheckEnabled="False"
+               IsTextPredictionEnabled="False" 
                Placeholder="Password"
                Text = "{Binding GamePinEntryText}" />
         <renderers:CustomStepper

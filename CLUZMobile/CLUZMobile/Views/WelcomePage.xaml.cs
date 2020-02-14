@@ -27,13 +27,9 @@ namespace CLUZMobile.Views
 
         protected override bool OnBackButtonPressed()
         {
-            //System.Diagnostics.Process.GetCurrentProcess().Kill();
-
             DependencyService.Get<IMessage>().ShortAlert("Logged out from server");
 
-            PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool", Globals.PlayerObject.Guid);
-
-            _ = PlayersHub.Disonnect();
+            PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool");
 
             App.Current.MainPage = new RegisterPage();
 
