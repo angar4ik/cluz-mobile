@@ -16,6 +16,7 @@
             <converters:TextToImageConverter x:Key="textToImage" />
             <converters:RoleToBoolConverter x:Key="roleToBool" />
             <converters:RoleToOpacityConverter x:Key="roleToOpacity" />
+            <converters:InversedBoolConverter x:Key="inversedBool" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -69,7 +70,10 @@
                             <StackLayout Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
                                 HeightRequest="45" WidthRequest="45" Orientation="Horizontal">
                                 <Image Source="{Binding Role, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
-                                <Image Source="{Binding State, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
+                                <Image IsVisible="{Binding AllowedToVote, Converter={StaticResource inversedBool}}"
+                                       Source="{Binding State, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
+                                <Image IsVisible="{Binding AllowedToVote}"
+                                       Source="{local:ImageResource CLUZMobile.Images.thumb_down.png}" Aspect="AspectFill"/>
                             </StackLayout>
                             <Label Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
                                            TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
@@ -77,14 +81,6 @@
                             <Label Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
                                            TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
                                            FontSize="Medium" Text="{Binding VoteCount}" />
-                            <d:StackLayout Margin="0, 10, 0, 10" Spacing="10"
-                                             Orientation="Horizontal"
-                                             HorizontalOptions="CenterAndExpand" >
-                                <StackLayout HeightRequest="45" WidthRequest="45" Orientation="Horizontal">
-                                    <Image Source="{local:ImageResource CLUZMobile.Images.door.jpg}" Aspect="AspectFill"/>
-                                </StackLayout>
-                                <Label Text="String" />
-                            </d:StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

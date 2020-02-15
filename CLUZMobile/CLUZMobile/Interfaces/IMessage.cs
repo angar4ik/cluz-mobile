@@ -8,5 +8,7 @@ namespace CLUZMobile.Interfaces
     {
         void LongAlert(string message);
         void ShortAlert(string message);
+        //how long in secongs
+        void CustomAlert(string message, int howLong);
     }
 }

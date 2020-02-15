@@ -24,16 +24,22 @@ namespace CLUZMobile.Helpers
             }
         }
 
+        public static bool IsVotingTime()
+        {
+            if (Globals.GameObject.TimeFrame >= 2
+                && Time.IsDay())
+                return true;
+            else
+                return false;
+        }
+
         public async static Task CountDownTimerAsync(GameVM model)
         {
             for(int i = 30; i > 1; i--)
             {
-                //DependencyService.Get<IMessage>().ShortAlert(i.ToString());
                 model.MultiButtonText = i.ToString();
                 await Task.Delay(1000);
             }
-
-            //
         }
     }
 }

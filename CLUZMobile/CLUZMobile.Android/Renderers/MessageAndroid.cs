@@ -27,5 +27,14 @@ namespace CLUZMobile.Droid
             Android.Views.View view = activity.FindViewById(Android.Resource.Id.Content);
             Snackbar.Make(view, message, 2000).Show();
         }
+
+        public void CustomAlert(string message, int howLong)
+        {
+            //Toast.MakeText(Application.Context, message, ToastLength.Short).Show();
+
+            Activity activity = CrossCurrentActivity.Current.Activity;
+            Android.Views.View view = activity.FindViewById(Android.Resource.Id.Content);
+            Snackbar.Make(view, message, howLong * 1000).Show();
+        }
     }
 }

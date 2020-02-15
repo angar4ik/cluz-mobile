@@ -96,7 +96,8 @@ namespace CLUZ.ViewModels
             {
                 if (Globals.PlayerObject.Role == PlayerRole.Ghost
                 || Globals.PlayerObject.Role == PlayerRole.Kicked
-                || _multiCommandHaveExecuted == true)
+                || _multiCommandHaveExecuted == true
+                || (Time.IsVotingTime() && Globals.PlayerObject.AllowedToVote == false))
                     return false;
                 else
                     return true;
@@ -131,6 +132,14 @@ namespace CLUZ.ViewModels
                 }
             });
 
+            PlayersHub.Connection.On<string, int, Guid>("SnackbarMessage", (message, howLong, guid) =>
+            {
+                if (guid == Globals.GameObject.Guid)
+                {
+                    DependencyService.Get<IMessage>().CustomAlert(message, howLong);
+                }
+            });
+
             PlayersHub.Connection.On<int, string, bool, Guid>("ShowModal", async (time, text, endGame, guid) =>
             {
                 if (guid == Globals.GameObject.Guid)
@@ -141,6 +150,7 @@ namespace CLUZ.ViewModels
                         PlayersHub.Connection.Remove("PlayerChanged");
                         PlayersHub.Connection.Remove("PlayerListChanged");
                         PlayersHub.Connection.Remove("ShowModal");
+                        PlayersHub.Connection.Remove("SnackbarMessage");
                     }
 
                     await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), true);
@@ -186,16 +196,9 @@ namespace CLUZ.ViewModels
         }
         public void RefreshGameObject(Game game)
         {
-            try
-            {
-                Globals.GameObject = game;
+            Globals.GameObject = game;
 
-                UpdateGame();
-            }
-            catch
-            {
-                DependencyService.Get<IMessage>().LongAlert($"Caught exception at RefreshGameObject()");
-            }
+            UpdateGame();
         }
         public void RefreshListPlayers(List<Player> players)
         {
@@ -274,10 +277,6 @@ namespace CLUZ.ViewModels
                 PlayersHub.Connection.InvokeAsync("VoteRequest", Globals.PlayerObject.Guid, SelectedItem.Guid, Globals.GameObject.Guid);
 
                 Actions.SetAndUpdateState(PlayerState.Ready);
-
-                //_multiCommandHaveExecuted = false;
-                //_didIVoted = true;
-                //MultiButtonText = "Ready";
             }
 
             else
@@ -319,8 +318,7 @@ namespace CLUZ.ViewModels
             {
                 MultiButtonText = "Guess";
             }
-            else if (Globals.GameObject.TimeFrame >= 2
-                && Time.IsDay() /*&& _didIVoted == false*/)
+            else if (Time.IsVotingTime())
             {
                 MultiButtonText = "Vote";
             }
