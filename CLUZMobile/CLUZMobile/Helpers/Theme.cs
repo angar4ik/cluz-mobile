@@ -10,21 +10,18 @@ namespace CLUZMobile.Helpers
     {
         public static void SetTheme(GameVM gameVeiwModel)
         {
-            if (Time.IsDay() && gameVeiwModel.timeFrameCount != Globals.GameObject.TimeFrame)
+            if (Time.IsDay())
             {
-                gameVeiwModel.timeFrameCount = Globals.GameObject.TimeFrame;
                 gameVeiwModel.BackgroundColor = Color.White;
                 gameVeiwModel.TextColor = Color.Black;
                 gameVeiwModel.BackgroundImageSource = ImageSource.FromResource("CLUZMobile.Images.city.jpg");
-                gameVeiwModel.SelectedItem = null;
             }
-            else if (!Time.IsDay() && gameVeiwModel.timeFrameCount != Globals.GameObject.TimeFrame)
+            else if (!Time.IsDay())
             {
-                gameVeiwModel.timeFrameCount = Globals.GameObject.TimeFrame;
                 gameVeiwModel.BackgroundColor = Color.Black;
                 gameVeiwModel.TextColor = Color.White;
                 gameVeiwModel.BackgroundImageSource = ImageSource.FromResource("CLUZMobile.Images.sky.jpg");
-                gameVeiwModel.SelectedItem = null;
+                
             }
         }
     }

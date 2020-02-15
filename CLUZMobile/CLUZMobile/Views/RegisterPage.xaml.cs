@@ -27,7 +27,7 @@ namespace CLUZ.Views
         protected override bool OnBackButtonPressed()
         {
 
-            PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool");
+            //PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool");
 
             return false;
         }

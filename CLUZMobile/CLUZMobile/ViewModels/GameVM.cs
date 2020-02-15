@@ -78,7 +78,7 @@ namespace CLUZ.ViewModels
 
         //bool _didIVoted = false;
 
-        bool _modalOpened = false;
+        //bool _modalOpened = false;
 
         public Command MultiCommand { get; set; }
         public ObservableCollection<Player> Items { get; set; } = new ObservableCollection<Player>();
@@ -135,10 +135,14 @@ namespace CLUZ.ViewModels
             {
                 if (guid == Globals.GameObject.Guid)
                 {
-                    PlayersHub.Connection.Remove("GameChanged");
-                    PlayersHub.Connection.Remove("PlayerChanged");
-                    PlayersHub.Connection.Remove("PlayerListChanged");
-                    PlayersHub.Connection.Remove("ShowModal");
+                    if (endGame)
+                    {
+                        PlayersHub.Connection.Remove("GameChanged");
+                        PlayersHub.Connection.Remove("PlayerChanged");
+                        PlayersHub.Connection.Remove("PlayerListChanged");
+                        PlayersHub.Connection.Remove("ShowModal");
+                    }
+
                     await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), true);
                 }
             });
@@ -297,11 +301,11 @@ namespace CLUZ.ViewModels
             if (timeFrameCount != Globals.GameObject.TimeFrame)
             {
                 _multiCommandHaveExecuted = false;
-                //_didIVoted = false;
+                timeFrameCount = Globals.GameObject.TimeFrame;
+                SelectedItem = null;
+                // setting colors only when after day changes
+                Theme.SetTheme(this);
             }
-
-            // setting colors only when after day changes
-            Theme.SetTheme(this);
         }
         public void UpdateMultiButtonText()
         {
