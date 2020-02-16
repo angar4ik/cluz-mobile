@@ -3,11 +3,9 @@ using Android.Support.V7.View;
 using Android.Support.V7.Widget;
 using CLUZMobile.Droid;
 using CLUZMobile.CustomRenderers;
-using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 
-//[assembly: ExportRenderer(typeof(CustomButton), typeof(CustomButtonRenderer))]
+[assembly: ExportRenderer(typeof(CustomButton), typeof(CustomButtonRenderer))]
 namespace CLUZMobile.Droid
 {
     public class CustomButtonRenderer : Xamarin.Forms.Platform.Android.AppCompat.ButtonRenderer

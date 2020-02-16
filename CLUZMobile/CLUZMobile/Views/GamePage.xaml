@@ -17,6 +17,7 @@
             <converters:RoleToBoolConverter x:Key="roleToBool" />
             <converters:RoleToOpacityConverter x:Key="roleToOpacity" />
             <converters:InversedBoolConverter x:Key="inversedBool" />
+            <converters:VoteCountConverter x:Key="voteCount" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -80,7 +81,7 @@
                                            FontSize="Large" FontAttributes="Bold" Text="{Binding Name}" />
                             <Label Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
                                            TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
-                                           FontSize="Medium" Text="{Binding VoteCount}" />
+                                           FontSize="Small" Text="{Binding VoteCount, Converter={StaticResource voteCount}}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

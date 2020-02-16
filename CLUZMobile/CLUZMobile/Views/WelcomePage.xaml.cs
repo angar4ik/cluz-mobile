@@ -1,4 +1,5 @@
 ﻿using CLUZ;
+using CLUZ.Models;
 using CLUZ.Services;
 using CLUZ.Views;
 using CLUZMobile.Interfaces;
@@ -30,6 +31,8 @@ namespace CLUZMobile.Views
             DependencyService.Get<IMessage>().ShortAlert("Logged out from server");
 
             PlayersHub.Connection.InvokeAsync("RemovePlayerFromPool");
+
+            Globals.PlayerObject = new Player();
 
             App.Current.MainPage = new RegisterPage();
 
