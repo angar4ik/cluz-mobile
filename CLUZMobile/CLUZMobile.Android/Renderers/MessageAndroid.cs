@@ -1,4 +1,4 @@
-﻿using Android.App;
+﻿﻿using Android.App;
 using Android.Support.Design.Widget;
 using Android.Widget;
 using CLUZMobile.Droid;
@@ -31,7 +31,7 @@ namespace CLUZMobile.Droid
         public void CustomAlert(string message, int howLong)
         {
             //Toast.MakeText(Application.Context, message, ToastLength.Short).Show();
-
+            //if snackbar.isShowed wait 1 second
             Activity activity = CrossCurrentActivity.Current.Activity;
             Android.Views.View view = activity.FindViewById(Android.Resource.Id.Content);
             Snackbar.Make(view, message, howLong * 1000).Show();
