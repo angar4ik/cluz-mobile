@@ -6,6 +6,7 @@
              xmlns:converters="clr-namespace:CLUZMobile.Converters"
              xmlns:local="clr-namespace:CLUZMobile;assembly=CLUZMobile"
              xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile"
+             xmlns:controls="clr-namespace:CLUZMobile.CustomControls;assembly=CLUZMobile"
              mc:Ignorable="d"
              x:Class="CLUZ.Views.GamePage"
              BackgroundColor="{Binding BackgroundColor}"
@@ -37,7 +38,7 @@
                    Text="{Binding MyRoleLabelText}"
                    FontSize="Large"
                    d:Text="TEST"/>
-            <Button TextColor="{Binding TextColor}"
+            <controls:CustomButton TextColor="{Binding TextColor}"
                     BorderWidth="1"
                     BorderColor="Gray"
                     BackgroundColor="Transparent"
@@ -49,7 +50,7 @@
                         <Setter Property="BorderWidth" Value="0" />
                     </Trigger>
                 </Button.Triggers>
-            </Button>
+            </controls:CustomButton>
         </StackLayout>
         <ListView x:Name="ListOfPlayers"
             Margin="15, 0, 15, 5"

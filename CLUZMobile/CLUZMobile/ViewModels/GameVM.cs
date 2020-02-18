@@ -142,6 +142,8 @@ namespace CLUZ.ViewModels
 
             PlayersHub.Connection.On<int, string, bool, Guid>("ShowModal", async (time, text, endGame, guid) =>
             {
+                bool animateModal = true;
+
                 if (guid == Globals.GameObject.Guid)
                 {
                     if (endGame)
@@ -151,9 +153,10 @@ namespace CLUZ.ViewModels
                         PlayersHub.Connection.Remove("PlayerListChanged");
                         PlayersHub.Connection.Remove("ShowModal");
                         PlayersHub.Connection.Remove("SnackbarMessage");
+                        animateModal = false;
                     }
 
-                    await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), true);
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), animateModal);
                 }
             });
             #endregion
