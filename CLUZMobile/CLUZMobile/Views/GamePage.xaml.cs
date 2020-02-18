@@ -1,4 +1,4 @@
-﻿﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿﻿﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +27,7 @@ namespace CLUZ.Views
         {
             base.OnAppearing();
             
-            viewModel.ButtonText = "Ready";
+            viewModel.MultiButtonText = "Ready";
         }
 
         protected override bool OnBackButtonPressed()
