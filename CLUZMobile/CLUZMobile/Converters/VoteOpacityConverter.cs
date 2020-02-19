@@ -6,17 +6,24 @@ using Xamarin.Forms;
 
 namespace CLUZMobile.Converters
 {
-    class VoteCountConverter : IValueConverter
+    class VoteOpacityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((int)value != 0)
+            if (value != null && (bool)value == false)
             {
-                return $"Votes: {(int)value}";
+                return 1;
+            }
+            else if (value != null && (bool)value == true)
+            {
+                return 0.3;
             }
             else
-                return null;
+            {
+                return 0;
+            }
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

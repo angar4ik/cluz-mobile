@@ -13,5 +13,6 @@ namespace CLUZ.Models
         public PlayerRole Role { get; set; }
         public int VoteCount { get; set; }
         public bool AllowedToVote { get; set; }
+        public bool HasVoted { get; set; }
     }
 }
