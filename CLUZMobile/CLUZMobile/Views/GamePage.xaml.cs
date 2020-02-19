@@ -36,6 +36,8 @@ namespace CLUZ.Views
                 {
                     if (t.Result)
                     {
+                        viewModel.source.Cancel();
+
                         Actions.LeaveGame();
 
                         App.Current.MainPage = new WelcomePage();
@@ -44,6 +46,8 @@ namespace CLUZ.Views
             }
             else
             {
+                viewModel.source.Cancel();
+
                 Actions.LeaveGame();
 
                 App.Current.MainPage = new WelcomePage();

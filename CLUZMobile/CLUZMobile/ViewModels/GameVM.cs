@@ -19,7 +19,7 @@ namespace CLUZ.ViewModels
 {
     public class GameVM : BaseVM
     {
-        CancellationTokenSource source = new CancellationTokenSource();
+        public CancellationTokenSource source = new CancellationTokenSource();
 
         #region SelectedItem
         private Player _selectedItem;
@@ -78,10 +78,6 @@ namespace CLUZ.ViewModels
         public int timeFrameCount = 0;
 
         bool _multiCommandHaveExecuted = false;
-
-        //bool _didIVoted = false;
-
-        //bool _modalOpened = false;
 
         public Command MultiCommand { get; set; }
         public ObservableCollection<Player> Items { get; set; } = new ObservableCollection<Player>();
@@ -165,6 +161,7 @@ namespace CLUZ.ViewModels
                 {
                     if (endGame)
                     {
+                        source.Cancel();
                         PlayersHub.Connection.Remove("GameChanged");
                         PlayersHub.Connection.Remove("PlayerChanged");
                         PlayersHub.Connection.Remove("PlayerListChanged");

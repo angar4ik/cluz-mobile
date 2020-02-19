@@ -24,7 +24,7 @@ namespace CLUZMobile.Converters
                         return null;
                 }
             }
-            else /*if (value != null && !Time.IsDay())*/
+            else if (value != null && !Time.IsDay())
             {
                 switch (value.ToString())
                 {
@@ -38,7 +38,8 @@ namespace CLUZMobile.Converters
                         return null;
                 }
             }
-            //return null;
+            
+            return null;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
