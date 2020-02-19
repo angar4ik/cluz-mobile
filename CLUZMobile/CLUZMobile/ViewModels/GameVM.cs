@@ -11,6 +11,7 @@ using CLUZMobile;
 using CLUZMobile.Helpers;
 using CLUZ.Views;
 using System.Linq;
+using System.Threading;
 
 //App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(), true);
 
@@ -18,6 +19,8 @@ namespace CLUZ.ViewModels
 {
     public class GameVM : BaseVM
     {
+        CancellationTokenSource source = new CancellationTokenSource();
+
         #region SelectedItem
         private Player _selectedItem;
         public Player SelectedItem
@@ -90,6 +93,9 @@ namespace CLUZ.ViewModels
             MultiCommand = new Command(
             execute: (o) =>
             {
+                //while this triggers, it disables vibro permanently
+                source.Cancel();
+                source = new CancellationTokenSource();
                 ExecuteMultiCommand(MultiButtonText);
             },
             canExecute: (o) =>
@@ -98,9 +104,20 @@ namespace CLUZ.ViewModels
                 || Globals.PlayerObject.Role == PlayerRole.Kicked
                 || _multiCommandHaveExecuted == true
                 || (Time.IsVotingTime() && Globals.PlayerObject.AllowedToVote == false))
+                {
                     return false;
+                }
                 else
+                {
+                    if (Globals.GameObject.TimeFrame > 0)
+                    {
+                        CancellationToken token = source.Token;
+                        VibroTimer.StartAsync(token);
+                    }
+
                     return true;
+                }
+
             });
             #endregion
 

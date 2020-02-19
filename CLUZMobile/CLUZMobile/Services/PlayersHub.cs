@@ -14,14 +14,14 @@ namespace CLUZ.Services
         public static HubConnection Connection { get; } = new HubConnectionBuilder()
             .WithUrl($"https://{Globals.Host}/PlayersHub")
             //.AddMessagePackProtocol()
-            .ConfigureLogging(logging =>
-            {
-                // Log to the Output Window
-                logging.AddDebug();
+            //.ConfigureLogging(logging =>
+            //{
+            //    // Log to the Output Window
+            //    logging.AddDebug();
 
-                // This will set ALL logging to Debug level
-                logging.SetMinimumLevel(LogLevel.Debug);
-            })
+            //    // This will set ALL logging to Debug level
+            //    logging.SetMinimumLevel(LogLevel.Debug);
+            //})
             .Build();
 
         public static async Task Connect()

@@ -75,7 +75,7 @@
                                 <Image IsVisible="{Binding AllowedToVote, Converter={StaticResource inversedBool}}"
                                        Source="{Binding State, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
                                 <Image IsVisible="{Binding AllowedToVote}"
-                                       Source="{local:ImageResource CLUZMobile.Images.thumb_down.png}" Aspect="AspectFill"/>
+                                       Source="{local:ImageResource CLUZMobile.Images.vote.png}" Aspect="AspectFill"/>
                             </StackLayout>
                             <Label Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
                                            TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
