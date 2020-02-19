@@ -35,6 +35,13 @@ namespace CLUZMobile.Views
                 viewModel.LoadItemsCommand.Execute(null);
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            PlayersHub.Connection.Remove("RefreshGameList");
+        }
+
         protected override bool OnBackButtonPressed()
         {
             App.Current.MainPage = new WelcomePage();

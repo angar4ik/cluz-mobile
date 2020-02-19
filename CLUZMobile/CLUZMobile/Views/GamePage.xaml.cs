@@ -23,12 +23,10 @@ namespace CLUZ.Views
             this.BindingContext = viewModel = new GameVM(gameGuid);
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            
-            viewModel.MultiButtonText = "Ready";
-        }
+        //protected override void OnDisappearing()
+        //{
+        //    base.OnDisappearing();
+        //}
 
         protected override bool OnBackButtonPressed()
         {

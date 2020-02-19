@@ -71,8 +71,6 @@ namespace CLUZMobile.ViewModels
             {
                 await LoadGames();
             });
-
-            //PlayerName = Globals.PlayerObject.Name;
         }
 
         public async Task LoadGames()

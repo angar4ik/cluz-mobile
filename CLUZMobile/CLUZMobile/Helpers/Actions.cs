@@ -15,6 +15,8 @@ namespace CLUZMobile.Helpers
         {
             PlayersHub.Connection.InvokeAsync("RemovePlayerFromGame", Globals.PlayerObject.Guid, Globals.GameObject.Guid);
 
+            //reset player state and game obj and vm props
+            Globals.GameObject.TimeFrame = 0;
         }
 
         public static void SetAndUpdateState(PlayerState state)
