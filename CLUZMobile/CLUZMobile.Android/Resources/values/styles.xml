@@ -22,19 +22,10 @@
     <item name="windowActionModeOverlay">true</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-    <!--selected item background-->
-    <item name="android:colorActivatedHighlight">#50017cdc</item>
+    <!--selected item background/works only for collectionview-->
+    <!--<item name="android:colorActivatedHighlight">#50017cdc</item>-->
   </style>
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF4081</item>
-  </style>
-  <style name="MyTheme" parent="MainTheme.Base">
-  </style>
-  <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowFullscreen">true</item>
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowActionBar">true</item>
   </style>
 </resources>
