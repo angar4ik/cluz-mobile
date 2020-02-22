@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="CLUZMobile.Views.CreatePage"
              xmlns:local="clr-namespace:CLUZMobile;assembly=CLUZMobile"
-             xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile">
+             xmlns:renderers="clr-namespace:CLUZMobile.CustomControls">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

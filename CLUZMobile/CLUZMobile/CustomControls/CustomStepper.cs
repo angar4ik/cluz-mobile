@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace CLUZMobile.CustomRenderers
+namespace CLUZMobile.CustomControls
 {
     public class CustomStepper : StackLayout
     {

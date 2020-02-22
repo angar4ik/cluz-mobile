@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CLUZ.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -10,12 +11,17 @@ namespace CLUZMobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString().Contains("Ghost") || value.ToString().Contains("Kicked"))
+            if (value != null)
             {
-                return 0.3;
+                Player p = (Player)value;
+
+                if (p.Role == PlayerRole.Ghost || p.Role == PlayerRole.Kicked)
+                {
+                    return 0.20;
+                }
             }
-            else
-                return 1;
+
+            return 1;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

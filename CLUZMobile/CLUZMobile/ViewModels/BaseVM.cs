@@ -7,7 +7,7 @@ namespace CLUZ.ViewModels
 {
     public class BaseVM : INotifyPropertyChanged
     {
-        string title = string.Empty;
+        //string title = string.Empty;
 
         #region ActivitySpin
         private bool _activitySpin = false;
@@ -17,12 +17,6 @@ namespace CLUZ.ViewModels
             set { SetProperty(ref _activitySpin, value); }
         }
         #endregion
-
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",

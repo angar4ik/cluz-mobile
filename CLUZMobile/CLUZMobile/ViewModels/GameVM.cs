@@ -80,6 +80,7 @@ namespace CLUZ.ViewModels
         bool _multiCommandHaveExecuted = false;
 
         public Command MultiCommand { get; set; }
+        public Command SelectionCommand { get; set; }
         public ObservableCollection<Player> Items { get; set; } = new ObservableCollection<Player>();
         public GameVM(Guid gameGuid)
         {
@@ -114,6 +115,15 @@ namespace CLUZ.ViewModels
                     return true;
                 }
 
+            });
+            #endregion
+
+            #region SelectionCommand
+            SelectionCommand = new Command(
+            execute: (o) =>
+            {
+                //if (!(p.Role == PlayerRole.Ghost || p.Role == PlayerRole.Kicked))
+                //    SelectedItem = p;
             });
             #endregion
 

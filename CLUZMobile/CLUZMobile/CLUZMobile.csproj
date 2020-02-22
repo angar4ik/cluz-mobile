@@ -10,30 +10,38 @@
 
   <ItemGroup>
     <None Remove="Images\city.jpg" />
-    <None Remove="Images\clock.png" />
-    <None Remove="Images\clock_w.png" />
+    <None Remove="Images\door-b.png" />
     <None Remove="Images\door.png" />
-    <None Remove="Images\door_w.png" />
-    <None Remove="Images\ghost.png" />
-    <None Remove="Images\ghost_w.png" />
+    <None Remove="Images\help.png" />
+    <None Remove="Images\person.png" />
     <None Remove="Images\sky.jpg" />
-    <None Remove="Images\thumb_down.png" />
+    <None Remove="Images\speechless-b.png" />
+    <None Remove="Images\speechless.png" />
+    <None Remove="Images\thumb-down-b.png" />
+    <None Remove="Images\thumb-down.png" />
+    <None Remove="Images\vote-b.png" />
     <None Remove="Images\vote.png" />
+    <None Remove="Images\waiting-b.png" />
+    <None Remove="Images\waiting.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\city.jpg" />
-    <EmbeddedResource Include="Images\clock.png" />
-    <EmbeddedResource Include="Images\clock_w.png" />
+    <EmbeddedResource Include="Images\door-b.png" />
     <EmbeddedResource Include="Images\door.png" />
-    <EmbeddedResource Include="Images\door_w.png" />
-    <EmbeddedResource Include="Images\ghost.png" />
-    <EmbeddedResource Include="Images\ghost_w.png" />
+    <EmbeddedResource Include="Images\help.png" />
+    <EmbeddedResource Include="Images\person.png" />
     <EmbeddedResource Include="Images\sky.jpg" />
     <EmbeddedResource Include="Images\moon.jpg" />
+    <EmbeddedResource Include="Images\speechless-b.png" />
+    <EmbeddedResource Include="Images\speechless.png" />
     <EmbeddedResource Include="Images\sun.jpg" />
-    <EmbeddedResource Include="Images\thumb_down.png" />
+    <EmbeddedResource Include="Images\thumb-down-b.png" />
+    <EmbeddedResource Include="Images\thumb-down.png" />
+    <EmbeddedResource Include="Images\vote-b.png" />
     <EmbeddedResource Include="Images\vote.png" />
+    <EmbeddedResource Include="Images\waiting-b.png" />
+    <EmbeddedResource Include="Images\waiting.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,9 +80,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CreatePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\GamePoolPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\GamePage.xaml">

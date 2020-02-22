@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:CLUZMobile.Converters"
              xmlns:local="clr-namespace:CLUZMobile;assembly=CLUZMobile"
-             xmlns:renderers="clr-namespace:CLUZMobile.CustomRenderers;assembly=CLUZMobile"
              xmlns:controls="clr-namespace:CLUZMobile.CustomControls;assembly=CLUZMobile"
              mc:Ignorable="d"
              x:Class="CLUZ.Views.GamePage"
@@ -14,12 +13,9 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:TextToImageConverter x:Key="textToImage" />
-            <converters:RoleToBoolConverter x:Key="roleToBool" />
             <converters:RoleToOpacityConverter x:Key="roleToOpacity" />
-            <converters:InversedBoolConverter x:Key="inversedBool" />
             <converters:VoteCountConverter x:Key="voteCount" />
-            <converters:VoteOpacityConverter x:Key="voteOpacity" />
+            <converters:ObjectToImageConverter x:Key="objectImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -28,16 +24,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Opacity="0.6" Source="{Binding BackgroundImageSource}" Aspect="Fill" Grid.ColumnSpan="1" Grid.RowSpan="4"
-               d:Source="{local:ImageResource CLUZMobile.Images.city.jpg}"/>
+        <Image Opacity="0.6" Source="{Binding BackgroundImageSource}" Aspect="Fill" Grid.ColumnSpan="1" Grid.RowSpan="4" />
         <StackLayout Margin="15, 15, 15, 5" Grid.Row="0"
                      Orientation="Horizontal" HorizontalOptions="FillAndExpand"
                      VerticalOptions="Center" >
             <Label TextColor="{Binding TextColor}"
                    HorizontalOptions="StartAndExpand"
                    VerticalOptions="CenterAndExpand"
-                   Text="{Binding MyRoleLabelText}"
-                   d:Text="TEST"/>
+                   Text="{Binding MyRoleLabelText}"/>
             <controls:CustomButton TextColor="{Binding TextColor}"
                     BorderWidth="2"
                     BorderColor="Gray"
@@ -46,11 +40,6 @@
                     Command="{Binding MultiCommand}"
                     FontSize="Medium"
                     CornerRadius="10">
-                <Button.Triggers>
-                    <Trigger TargetType="Button" Property="IsEnabled" Value="False">
-                        <Setter Property="BorderWidth" Value="0" />
-                    </Trigger>
-                </Button.Triggers>
             </controls:CustomButton>
         </StackLayout>
         <CollectionView x:Name="ListOfPlayers"
@@ -58,42 +47,37 @@
                         Grid.Row="1"
                         Grid.RowSpan="3"
                         ItemsSource="{Binding Items}"
-                        SelectionMode="Single"
-                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10" IsEnabled="{Binding Role, Converter={StaticResource roleToBool}}">
+                    <Grid Padding="6" Opacity="{Binding ., Converter={StaticResource roleToOpacity}}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="15" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="15" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <StackLayout Grid.RowSpan="2"
-                                     Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
-                                    HeightRequest="60" WidthRequest="60" Orientation="Horizontal">
-                            <Image Source="{Binding Role, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
-                            <Image IsVisible="{Binding AllowedToVote, Converter={StaticResource inversedBool}}"
-                                        Source="{Binding State, Converter={StaticResource textToImage}}" Aspect="AspectFill"/>
-                            <Image IsVisible="{Binding AllowedToVote}"
-                                       Opacity="{Binding HasVoted, Converter={StaticResource voteOpacity}}"
-                                        Source="{local:ImageResource CLUZMobile.Images.vote.png}" Aspect="AspectFill"/>
-                        </StackLayout>
-                        <Label Grid.Column="1"
+                        <Image Grid.RowSpan="3" Grid.ColumnSpan="3"
+                            Source="{local:ImageResource CLUZMobile.Images.person.png}" Aspect="Fill" />
+                        <Image Margin="-5" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                                Source="{Binding ., Converter={StaticResource objectImage}}" Aspect="Fill" />
+
+                        <Label Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2"
                                FontAttributes="Bold"
-                               FontSize="Medium"
-                               Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
-                                           TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
-                                            Text="{Binding Name}" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
+                                            Text="{Binding Name}"/>
+                        <Label Margin="0,-10,0,0" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2"
+                               HorizontalOptions="CenterAndExpand"
                                FontAttributes="Italic" 
-                               VerticalOptions="End"
-                               Opacity="{Binding Role, Converter={StaticResource roleToOpacity}}"
-                                           TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
-                                           Text="{Binding VoteCount, Converter={StaticResource voteCount}}" />
+                               TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
+                               Text="{Binding VoteCount, Converter={StaticResource voteCount}}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
