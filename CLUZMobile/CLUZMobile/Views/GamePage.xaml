@@ -22,15 +22,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Opacity="0.6" Source="{Binding BackgroundImageSource}" Aspect="Fill" Grid.ColumnSpan="1" Grid.RowSpan="4" />
-        <StackLayout Margin="15, 15, 15, 5" Grid.Row="0"
-                     Orientation="Horizontal" HorizontalOptions="FillAndExpand"
-                     VerticalOptions="Center" >
-            <Label TextColor="{Binding TextColor}"
-                   HorizontalOptions="StartAndExpand"
-                   VerticalOptions="CenterAndExpand"
-                   Text="{Binding MyRoleLabelText}"/>
-            <controls:CustomButton TextColor="{Binding TextColor}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Opacity="0.6" Source="{Binding BackgroundImageSource}" Aspect="Fill" Grid.ColumnSpan="3" Grid.RowSpan="3" />
+        <Image Margin="15" Source="{local:ImageResource CLUZMobile.Images.help.png}" Aspect="AspectFit" HorizontalOptions="Start" />
+        <controls:CustomButton Margin="15"
+                    TextColor="{Binding TextColor}"
+                    Grid.Column="2"
+                    HorizontalOptions="End"
                     BorderWidth="2"
                     BorderColor="Gray"
                     BackgroundColor="Transparent"
@@ -38,12 +39,12 @@
                     Command="{Binding MultiCommand}"
                     FontSize="Medium"
                     CornerRadius="10">
-            </controls:CustomButton>
-        </StackLayout>
+        </controls:CustomButton>
         <CollectionView x:Name="ListOfPlayers"
                         Margin="15, 25, 15, 5"
                         Grid.Row="1"
-                        Grid.RowSpan="3"
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="3"
                         ItemsSource="{Binding Items}"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding SelectionCommand}"
@@ -67,14 +68,16 @@
                         <Image Margin="-5" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"
                                 Source="{Binding ., Converter={StaticResource objectImage}}" Aspect="Fill" />
 
-                        <Label Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                        <Label Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3"
                                FontAttributes="Bold"
+                               FontSize="Medium"
                                HorizontalOptions="CenterAndExpand"
                                TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
                                             Text="{Binding Name}"/>
                         <Label Margin="0,-10,0,0" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2"
                                HorizontalOptions="CenterAndExpand"
-                               FontAttributes="Italic" 
+                               FontAttributes="Italic"
+                               FontSize="Micro"
                                TextColor="{Binding Source={x:Reference ListOfPlayers}, Path=BindingContext.TextColor}"
                                Text="{Binding VoteCount, Converter={StaticResource voteCount}}" />
                     </Grid>

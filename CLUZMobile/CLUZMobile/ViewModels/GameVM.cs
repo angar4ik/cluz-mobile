@@ -13,8 +13,6 @@ using CLUZ.Views;
 using System.Linq;
 using System.Threading;
 
-//App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(), true);
-
 namespace CLUZ.ViewModels
 {
     public class GameVM : BaseVM
