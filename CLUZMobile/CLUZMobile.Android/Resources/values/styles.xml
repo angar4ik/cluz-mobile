@@ -23,7 +23,7 @@
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
     <!--selected item background/works only for collectionview-->
-    <!--<item name="android:colorActivatedHighlight">#50017cdc</item>-->
+    <item name="android:colorActivatedHighlight">#50017cdc</item>
   </style>
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF4081</item>

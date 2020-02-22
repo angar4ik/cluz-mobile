@@ -118,47 +118,32 @@ namespace CLUZ.ViewModels
             #endregion
 
             #region Server Call Handlers
-            PlayersHub.Connection.On<Game, Guid>("GameChanged", (game, guid) =>
+            PlayersHub.Connection.On<Game>("GameChanged", (game) =>
             {
-                if (guid == Globals.GameObject.Guid)
-                {
-                    RefreshGameObject(game);
-                    MultiCommand.ChangeCanExecute();
-                }  
+                RefreshGameObject(game);
+                MultiCommand.ChangeCanExecute();
             });
 
-            PlayersHub.Connection.On<Player, Guid>("PlayerChanged", (player, guid) =>
+            PlayersHub.Connection.On<Player>("PlayerChanged", (player) =>
             {
-                if (guid == Globals.GameObject.Guid)
-                {
-                    RefreshPlayer(player);
-                    MultiCommand.ChangeCanExecute();
-                }
+                RefreshPlayer(player);
+                MultiCommand.ChangeCanExecute();
             });
 
-            PlayersHub.Connection.On<List<Player>, Guid>("PlayerListChanged", (players, guid) =>
+            PlayersHub.Connection.On<List<Player>>("PlayerListChanged", (players) =>
             {
-                if (guid == Globals.GameObject.Guid)
-                {
-                    RefreshListPlayers(players);
-                    MultiCommand.ChangeCanExecute();
-                }
+                RefreshListPlayers(players);
+                MultiCommand.ChangeCanExecute();
             });
 
-            PlayersHub.Connection.On<string, int, Guid>("SnackbarMessage", (message, howLong, guid) =>
+            PlayersHub.Connection.On<string, int>("SnackbarMessage", (message, howLong) =>
             {
-                if (guid == Globals.GameObject.Guid)
-                {
-                    DependencyService.Get<IMessage>().CustomAlert(message, howLong);
-                }
+                DependencyService.Get<IMessage>().CustomAlert(message, howLong);
             });
 
-            PlayersHub.Connection.On<int, string, bool, Guid>("ShowModal", async (time, text, endGame, guid) =>
+            PlayersHub.Connection.On<int, string, bool>("ShowModal", async (time, text, endGame) =>
             {
                 bool animateModal = true;
-
-                if (guid == Globals.GameObject.Guid)
-                {
                     if (endGame)
                     {
                         source.Cancel();
@@ -170,8 +155,7 @@ namespace CLUZ.ViewModels
                         animateModal = false;
                     }
 
-                    await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), animateModal);
-                }
+                await App.Current.MainPage.Navigation.PushModalAsync(new CountDownPage(time, text, endGame), animateModal);
             });
             #endregion
 
