@@ -81,8 +81,6 @@ namespace CLUZMobile.ViewModels
             string gameName = GameNameEntryText.Trim();
             string gamePin = GamePinEntryText.Trim();
 
-            Console.WriteLine("ExecuteCreateGameCommand fired");
-
             bool result = await PlayersHub.Connection.InvokeAsync<bool>("GameNameExistsInPool", gameName);
 
             if (!result)

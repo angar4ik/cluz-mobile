@@ -122,8 +122,10 @@ namespace CLUZ.ViewModels
             SelectionCommand = new Command(
             execute: (o) =>
             {
-                //if (!(p.Role == PlayerRole.Ghost || p.Role == PlayerRole.Kicked))
-                //    SelectedItem = p;
+                if (SelectedItem?.Role == PlayerRole.Ghost || SelectedItem?.Role == PlayerRole.Kicked)
+                {
+                    SelectedItem = null;
+                } 
             });
             #endregion
 
