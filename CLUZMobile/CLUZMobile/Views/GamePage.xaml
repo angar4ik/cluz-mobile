@@ -39,12 +39,13 @@
                    Text="{Binding MyRoleLabelText}"
                    d:Text="TEST"/>
             <controls:CustomButton TextColor="{Binding TextColor}"
-                    BorderWidth="1"
+                    BorderWidth="2"
                     BorderColor="Gray"
                     BackgroundColor="Transparent"
                     Text="{Binding MultiButtonText}"
                     Command="{Binding MultiCommand}"
-                    FontSize="Medium">
+                    FontSize="Medium"
+                    CornerRadius="10">
                 <Button.Triggers>
                     <Trigger TargetType="Button" Property="IsEnabled" Value="False">
                         <Setter Property="BorderWidth" Value="0" />

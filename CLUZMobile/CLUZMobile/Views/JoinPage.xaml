@@ -29,11 +29,12 @@
         <Button Grid.Row="0" Grid.Column="4"
                 Grid.ColumnSpan="2"
                 Margin="0, 20, 20, 20"
-            BorderColor="Gray" BorderWidth="1"
+            BorderColor="Gray" BorderWidth="2"
                 VerticalOptions="CenterAndExpand"
                HorizontalOptions="FillAndExpand"
                 BackgroundColor="Transparent"
                 Text="Join"
+                 CornerRadius="10"
                 Command="{Binding JoinCommand}" />
 
         <Entry Grid.Row="0" Grid.Column="0"
@@ -65,13 +66,18 @@
                         <Grid Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Margin="20, 0, 0, 5" TextColor="Black" FontSize="Medium" FontAttributes="Bold" Text="{Binding Name}" />
-                            <Label Margin="0, 5, 0, 0" Grid.Column="1" TextColor="Black" FontSize="Small" FontAttributes="Italic" Text="{Binding Status, StringFormat='Status: {0}'}" />
+                            <Label VerticalOptions="Center" Grid.RowSpan="2" Margin="20, 0, 0, 0"
+                                   TextColor="Black" FontSize="Medium" FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label Grid.Column="1" TextColor="Black" FontSize="Small"
+                                   FontAttributes="Italic" Text="{Binding Status, StringFormat='Status: {0}'}" />
+                            <Label Grid.Column="1" Grid.Row="1" TextColor="Black" FontSize="Small"
+                                   FontAttributes="Italic" Text="{Binding MinimumPlayerCount, StringFormat='Minimum: {0}'}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

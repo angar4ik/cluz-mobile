@@ -51,10 +51,7 @@ namespace CLUZMobile.CustomRenderers
             Orientation = StackOrientation.Horizontal;
             PlusBtn.Clicked += PlusBtn_Clicked;
             MinusBtn.Clicked += MinusBtn_Clicked;
-            //Entry = new Entry { PlaceholderColor = Color.Gray, Keyboard = Keyboard.Numeric, WidthRequest = 40, BackgroundColor = Color.FromHex("#3FFF"), MaxLength = 2 };
-            label = new Label { WidthRequest = 30, BackgroundColor = Color.FromHex("#3FFF"), VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, FontSize = 18 };
-            //Entry.Behaviors.Add(new DecimalNumberValidationBehavior());
-            //Entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
+            label = new Label { WidthRequest = 30, BackgroundColor = Color.Transparent, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, FontSize = 18, TextColor = Color.Black };
             label.SetBinding(Label.TextProperty, new Binding(nameof(Text), BindingMode.TwoWay, source: this));
             //Entry.TextChanged += Entry_TextChanged;
             Children.Add(MinusBtn);
@@ -83,8 +80,4 @@ namespace CLUZMobile.CustomRenderers
                 Text++;
         }
     }
-
-    //internal class DecimalNumberValidationBehavior : Behavior
-    //{
-    //}
 }

@@ -27,13 +27,19 @@
         <Image Opacity="0.6" Source="{local:ImageResource CLUZMobile.Images.sun.jpg}" Aspect="Fill" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
         <StackLayout />
         <ActivityIndicator IsRunning="{Binding ActivitySpin}" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <StackLayout Margin="10, 0, 0, 0" VerticalOptions="Center" Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-            <Frame Padding="0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" CornerRadius="2">
-                <Entry x:Name="EntryText" IsSpellCheckEnabled="False" PlaceholderColor="Gray" Placeholder="Name" />
-            </Frame>
-        </StackLayout>
+        <Entry
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Transparent"
+            Margin="10, 0, 0, 0"
+            VerticalOptions="Center"
+            Grid.Row="2"
+            Grid.Column="0"
+            x:Name="EntryText"
+            IsSpellCheckEnabled="False"
+            PlaceholderColor="Gray"
+            Placeholder="Name" />
         <StackLayout Margin="0, 0, 10, 0" VerticalOptions="Center" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-            <Button BorderColor="Gray" BackgroundColor="Transparent" BorderWidth="1" Text="Register"
+            <Button BorderColor="Gray" BackgroundColor="Transparent" BorderWidth="2" Text="Register" CornerRadius="10"
                     CommandParameter="{Binding Source={x:Reference EntryText}, Path=Text}"
                     Command="{Binding RegisterCommand}">
             </Button>

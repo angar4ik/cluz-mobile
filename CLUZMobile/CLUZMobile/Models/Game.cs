@@ -13,5 +13,7 @@ namespace CLUZ.Models
         public Guid Guid { get; set; }
 
         public int TimeFrame { get; set; }
+
+        public int MinimumPlayerCount { get; set; }
     }
 }

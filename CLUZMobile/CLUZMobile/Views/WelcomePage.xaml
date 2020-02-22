@@ -34,7 +34,8 @@
                      Grid.ColumnSpan="3"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="FillAndExpand"
-            BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent"
+            BorderColor="Gray" BorderWidth="2" BackgroundColor="Transparent"
+                CornerRadius="10"
                 Text="Create"
                 Command="{Binding CreateCommand}" />
         <Button Margin="10, 0, 20, 0"
@@ -44,7 +45,8 @@
                      Grid.ColumnSpan="3"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="FillAndExpand"
-                BorderColor="Gray" BorderWidth="1" BackgroundColor="Transparent"
+                BorderColor="Gray" BorderWidth="2" BackgroundColor="Transparent"
+                CornerRadius="10"
                 Text="Join"
                 Command="{Binding JoinCommand}" />
     </Grid>

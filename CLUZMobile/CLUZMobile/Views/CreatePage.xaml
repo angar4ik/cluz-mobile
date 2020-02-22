@@ -55,7 +55,7 @@
                Placeholder="Password"
                Text = "{Binding GamePinEntryText}" />
         <renderers:CustomStepper
-               Margin="20, 0, 5, 0"
+               Margin="0, 0, 0, 15"
                Grid.Row="3" Grid.Column="2"
                Grid.ColumnSpan="3"
                BackgroundColor="Transparent"
@@ -65,11 +65,12 @@
         <Button Grid.Row="3" Grid.Column="4"
                 Grid.ColumnSpan="2"
                 Margin="0, 0, 20, 20"
-                BorderColor="Gray" BorderWidth="1"
+                BorderColor="Gray" BorderWidth="2"
                 BackgroundColor="Transparent"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="FillAndExpand"
                 Text="Create"
+                 CornerRadius="10"
                 Command="{Binding CreateCommand}" />
     </Grid>
 </ContentPage>

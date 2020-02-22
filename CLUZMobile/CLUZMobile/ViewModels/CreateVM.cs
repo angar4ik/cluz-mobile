@@ -87,13 +87,18 @@ namespace CLUZMobile.ViewModels
 
             if (!result)
             {
-                Guid newGameGuid = await PlayersHub.Connection.InvokeAsync<Guid>("CreateGame", gameName, gamePin, MinimumCount);
+                bool answer = await App.Current.MainPage.DisplayAlert("New Game", $"{MinimumCount} minimum players. Sure?", "Yes", "No");
 
-                DependencyService.Get<IMessage>().ShortAlert($"Game {gameName} have been created");
+                if (answer)
+                {
+                    Guid newGameGuid = await PlayersHub.Connection.InvokeAsync<Guid>("CreateGame", gameName, gamePin, MinimumCount);
 
-                GameNameEntryText = "";
+                    DependencyService.Get<IMessage>().ShortAlert($"Game {gameName} have been created");
 
-                await JoinGame(newGameGuid, gamePin);
+                    GameNameEntryText = "";
+
+                    await JoinGame(newGameGuid, gamePin);
+                }
             }
             else
             {
