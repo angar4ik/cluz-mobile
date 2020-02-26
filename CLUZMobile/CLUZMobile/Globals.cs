@@ -14,7 +14,5 @@ namespace CLUZMobile
         public static string Host { get; } = $"{hostName}:{hostPort}";
         public static Player PlayerObject { get; set; } = new Player();
         public static Game GameObject { get; set; } = new Game();
-
-        // some comment
     }
 }
