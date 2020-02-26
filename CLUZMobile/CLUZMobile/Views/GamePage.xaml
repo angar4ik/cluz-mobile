@@ -45,6 +45,7 @@
                         Grid.Row="1"
                         Grid.RowSpan="2"
                         Grid.ColumnSpan="3"
+                        EmptyView="No players to display"
                         ItemsSource="{Binding Items}"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding SelectionCommand}"
